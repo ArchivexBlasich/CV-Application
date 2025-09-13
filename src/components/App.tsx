@@ -17,12 +17,6 @@ const initialEducation: EducationForm[] = [
     degree: "Computer Engineer",
     id: crypto.randomUUID(),
   },
-  {
-    institution: "National University of Buenos Aires",
-    year: "2019 - 2023",
-    degree: "Economy",
-    id: crypto.randomUUID(),
-  },
 ];
 
 function App() {
@@ -42,29 +36,54 @@ function App() {
   };
 
   const educationHandlers = {
-    handleInstitutionChange: (id:string, e: React.ChangeEvent<HTMLInputElement>) =>
-      {
-        setEducationList(educationList.map(education => {
-            return (education.id === id) 
-            ? {...education, institution:e.target.value}
-            : {...education};
-        }))
+    handleInstitutionChange: (
+      id: string,
+      e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+      setEducationList(
+        educationList.map((education) => {
+          return education.id === id
+            ? { ...education, institution: e.target.value }
+            : { ...education };
+        })
+      );
     },
-    handleYearChange: (id:string, e: React.ChangeEvent<HTMLInputElement>) =>
-      {
-        setEducationList(educationList.map(education => {
-            return (education.id === id) 
-            ? {...education, year: e.target.value }
-            : {...education};
-        }))
+    handleYearChange: (id: string, e: React.ChangeEvent<HTMLInputElement>) => {
+      setEducationList(
+        educationList.map((education) => {
+          return education.id === id
+            ? { ...education, year: e.target.value }
+            : { ...education };
+        })
+      );
     },
-    handleDegreeChange: (id:string, e: React.ChangeEvent<HTMLInputElement>) =>
-      {
-        setEducationList(educationList.map(education => {
-            return (education.id === id) 
-            ? {...education, degree: e.target.value  }
-            : {...education};
-        }))
+    handleDegreeChange: (
+      id: string,
+      e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+      setEducationList(
+        educationList.map((education) => {
+          return education.id === id
+            ? { ...education, degree: e.target.value }
+            : { ...education };
+        })
+      );
+    },
+    addEducation: () => {
+      setEducationList([
+        ...educationList,
+        {
+          institution: "",
+          year: "",
+          degree: "",
+          id: crypto.randomUUID(),
+        },
+      ]);
+    },
+    deleteEducation: (id: string) => {
+      setEducationList(
+        educationList.filter(education => education.id !== id)
+      );
     },
   };
 
@@ -79,7 +98,7 @@ function App() {
 
       <ListEducation
         educationList={educationList}
-        educationHandlers={educationHandlers}
+        listEducationHandlers={educationHandlers}
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
       />
@@ -93,11 +112,11 @@ function App() {
         <br />
         <div className="generalInfo">
           {educationList.map((education) => (
-            < Fragment key={education.id}>
+            <Fragment key={education.id}>
               <h1>{education.institution}</h1>
               <h3>{education.degree}</h3>
               <h5>{education.year}</h5>
-            </ Fragment >
+            </Fragment>
           ))}
         </div>
       </div>
