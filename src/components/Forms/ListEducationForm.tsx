@@ -4,9 +4,9 @@ import DeleteIcon from "../../assets/delete_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz
 import AddIcon from "../../assets/add_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg?react";
 import { Fragment } from "react/jsx-runtime";
 
-interface ListEducationHandlers extends EducationHandlers{
-    addEducation: () => void,
-    deleteEducation: (id: string) => void,
+interface ListEducationHandlers extends EducationHandlers {
+  addEducation: () => void;
+  deleteEducation: (id: string) => void;
 }
 
 type ListEducation = {
@@ -43,7 +43,9 @@ function ListEducationForm({
             education={education}
             educationHandlers={listEducationHandlers}
           />
-          <button onClick={() => listEducationHandlers.deleteEducation(education.id)}>
+          <button
+            onClick={() => listEducationHandlers.deleteEducation(education.id)}
+          >
             <DeleteIcon />
           </button>
         </Fragment>
@@ -53,3 +55,4 @@ function ListEducationForm({
 }
 
 export default ListEducationForm;
+export type { ListEducationHandlers };

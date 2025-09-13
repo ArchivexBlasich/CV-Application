@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
-import { GeneralInformation } from "./Forms";
-import { ListEducation } from "./Forms";
-import type { EducationForm, GeneralInformationForm } from "./Forms";
+import { GeneralInformation, ListEducation, ListWork } from "./Forms";
+import type { GeneralInformationForm, EducationForm, WorkForm } from "./Forms";
+import type { ListEducationHandlers, ListWorkHandlers } from "./Forms";
 
 const initialGeneralInfo: GeneralInformationForm = {
   firstName: "Fabricio",
@@ -19,9 +19,20 @@ const initialEducation: EducationForm[] = [
   },
 ];
 
+const initialWork: WorkForm[] = [
+  {
+    company: "",
+    dates: "",
+    positionTitle: "",
+    mainResponsibilities: "",
+    id: crypto.randomUUID(),
+  },
+];
+
 function App() {
   const [generalInfo, setGeneralInfo] = useState(initialGeneralInfo);
   const [educationList, setEducationList] = useState(initialEducation);
+  const [workList, setWorkList] = useState(initialWork);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const generalInfoHandlers = {
@@ -35,7 +46,7 @@ function App() {
       setGeneralInfo({ ...generalInfo, email: e.target.value }),
   };
 
-  const educationHandlers = {
+  const educationHandlers: ListEducationHandlers = {
     handleInstitutionChange: (
       id: string,
       e: React.ChangeEvent<HTMLInputElement>
@@ -82,7 +93,72 @@ function App() {
     },
     deleteEducation: (id: string) => {
       setEducationList(
-        educationList.filter(education => education.id !== id)
+        educationList.filter((education) => education.id !== id)
+      );
+    },
+  };
+
+  const workHandlers: ListWorkHandlers = {
+    handleCompanyChange: (
+      id: string,
+      e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+      setWorkList(
+        workList.map((work) => {
+          return work.id === id
+            ? { ...work, company: e.target.value }
+            : { ...work };
+        })
+      );
+    },
+    handleDatesChange: (id: string, e: React.ChangeEvent<HTMLInputElement>) => {
+      setWorkList(
+        workList.map((work) => {
+          return work.id === id
+            ? { ...work, dates: e.target.value }
+            : { ...work };
+        })
+      );
+    },
+    handlePositionTitleChange: (
+      id: string,
+      e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+      setWorkList(
+        workList.map((work) => {
+          return work.id === id
+            ? { ...work, positionTitle: e.target.value }
+            : { ...work };
+        })
+      );
+    },
+    handleMainResponsibilitiesChange: (
+      id: string,
+      e: React.ChangeEvent<HTMLTextAreaElement>
+    ) => {
+      setWorkList(
+        workList.map((work) => {
+          return work.id === id
+            ? { ...work, mainResponsibilities: e.target.value }
+            : { ...work };
+        })
+      );
+    },
+    addWork: () => {
+      setWorkList([
+        ...workList,
+        {
+          company: "",
+          dates: "",
+          positionTitle: "",
+          mainResponsibilities: "",
+          id: crypto.randomUUID(),
+        },
+      ]);
+    },
+    deleteWork: (id: string) => {
+      setWorkList(
+        workList.filter(work => work.id !== id)
       );
     },
   };
@@ -103,6 +179,13 @@ function App() {
         onShow={() => setActiveIndex(1)}
       />
 
+      <ListWork
+        workList={workList}
+        listWorkHandlers={workHandlers}
+        isActive={activeIndex === 2}
+        onShow={() => setActiveIndex(2)}
+      />
+
       <div id="classView" className="container">
         <div className="generalInfo">
           <h1>{[generalInfo.firstName, generalInfo.lastName].join(" ")}</h1>
@@ -110,12 +193,23 @@ function App() {
           <h5>{generalInfo.phone}</h5>
         </div>
         <br />
-        <div className="generalInfo">
+        <div className="Education">
           {educationList.map((education) => (
             <Fragment key={education.id}>
               <h1>{education.institution}</h1>
               <h3>{education.degree}</h3>
               <h5>{education.year}</h5>
+            </Fragment>
+          ))}
+        </div>
+        <br />
+        <div className="Work">
+          {workList.map((work) => (
+            <Fragment key={work.id}>
+              <h1>{work.company}</h1>
+              <h3>{work.dates}</h3>
+              <h3>{work.positionTitle}</h3>
+              <p>{work.mainResponsibilities}</p>
             </Fragment>
           ))}
         </div>
