@@ -36,6 +36,15 @@ function Work({
 }) {
   return (
     <>
+    <div>
+        <Input
+          title="Position Title"
+          type="text"
+          value={work.positionTitle}
+          id={work.id}
+          onChange={(e) => workHandlers.handlePositionTitleChange(work.id, e)}
+        />
+      </div>
       <div>
         <Input
           title="Company"
@@ -47,20 +56,11 @@ function Work({
       </div>
       <div>
         <Input
-          title="Dates:"
+          title="Dates"
           type="text"
           value={work.dates}
           id={work.id}
           onChange={(e) => workHandlers.handleDatesChange(work.id, e)}
-        />
-      </div>
-      <div>
-        <Input
-          title="Position Title"
-          type="text"
-          value={work.positionTitle}
-          id={work.id}
-          onChange={(e) => workHandlers.handlePositionTitleChange(work.id, e)}
         />
       </div>
       <div>

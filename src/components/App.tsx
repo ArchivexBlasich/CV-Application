@@ -3,7 +3,7 @@ import { GeneralInformation, ListEducation, ListWork } from "./Forms";
 import type { GeneralInformationForm, EducationForm, WorkForm } from "./Forms";
 import type { ListEducationHandlers, ListWorkHandlers } from "./Forms";
 import CvVision from "./CvVision";
-// import html2pdf from "html2pdf.js";
+import html2pdf from "html2pdf.js";
 import "../styles/App.css";
 import "../styles/GeneralInformation.css";
 import "../styles/ListForms.css";
@@ -167,6 +167,31 @@ function App() {
     },
   };
 
+  function handDownloadPdf() {
+    const element = document.querySelector(".cv-view");
+    if (!element) return;
+
+    const opt = {
+      margin: [10, 10, 10, 10],
+      filename: `${generalInfo.firstName}_${generalInfo.lastName}_cv.pdf`,
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: {
+        scale: 3,
+        letterRendering: true,
+      },
+      jsPDF: {
+        unit: "mm",
+        format: "a4", // This tells the library to use a standard A4 page
+        orientation: "portrait",
+      },
+    };
+
+    html2pdf()
+      .from(element as HTMLElement)
+      .set(opt)
+      .save();
+  }
+
   return (
     <>
       <main className="container">
@@ -176,7 +201,9 @@ function App() {
             <h1>CV Builder</h1>
             <p className="lead">Create a professional CV.</p>
           </div>
-          <PdfIcon />
+          <button onClick={handDownloadPdf}>
+            <PdfIcon />
+          </button>
         </header>
         <div className="cv-edition">
           <GeneralInformation

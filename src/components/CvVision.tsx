@@ -42,7 +42,7 @@ function CvVision({ generalInfo, educationList, workList }: CvVisionParam) {
                   {work.positionTitle} — {work.company}
                 </h3>
                 <p className="cv-meta">{work.dates}</p>
-                <p>{work.mainResponsibilities}</p>
+                <p className="workDescription ">{work.mainResponsibilities}</p>
               </li>
             ))}
           </ul>

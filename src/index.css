@@ -112,6 +112,14 @@ body {
     sans-serif;
 }
 
+ul {
+  list-style: none;
+}
+
+li::marker {
+  content: "• ";
+}
+
 /* xs */
 @media (min-width: 475px) {
   .container {
