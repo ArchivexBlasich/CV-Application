@@ -1,0 +1,6 @@
+@import "../index.css";
+
+.general-information.card {
+    display: flex;
+    flex-direction: column;
+}

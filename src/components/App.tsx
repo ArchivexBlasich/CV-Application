@@ -1,7 +1,10 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { GeneralInformation, ListEducation, ListWork } from "./Forms";
 import type { GeneralInformationForm, EducationForm, WorkForm } from "./Forms";
 import type { ListEducationHandlers, ListWorkHandlers } from "./Forms";
+import "../styles/App.css";
+import "../styles/GeneralInformation.css";
+import "../styles/ListForms.css";
 
 const initialGeneralInfo: GeneralInformationForm = {
   firstName: "Fabricio",
@@ -157,62 +160,75 @@ function App() {
       ]);
     },
     deleteWork: (id: string) => {
-      setWorkList(
-        workList.filter(work => work.id !== id)
-      );
+      setWorkList(workList.filter((work) => work.id !== id));
     },
   };
 
   return (
     <>
-      <GeneralInformation
-        generalInfo={generalInfo}
-        generalInfoHandlers={generalInfoHandlers}
-        isActive={activeIndex === 0}
-        onShow={() => setActiveIndex(0)}
-      />
-
-      <ListEducation
-        educationList={educationList}
-        listEducationHandlers={educationHandlers}
-        isActive={activeIndex === 1}
-        onShow={() => setActiveIndex(1)}
-      />
-
-      <ListWork
-        workList={workList}
-        listWorkHandlers={workHandlers}
-        isActive={activeIndex === 2}
-        onShow={() => setActiveIndex(2)}
-      />
-
-      <div id="classView" className="container">
-        <div className="generalInfo">
-          <h1>{[generalInfo.firstName, generalInfo.lastName].join(" ")}</h1>
-          <h3>{generalInfo.email}</h3>
-          <h5>{generalInfo.phone}</h5>
+      <main className="container">
+        <div className="cv-edition">
+          <GeneralInformation
+            generalInfo={generalInfo}
+            generalInfoHandlers={generalInfoHandlers}
+            isActive={activeIndex === 0}
+            onShow={() => setActiveIndex(0)}
+          />
+          <ListEducation
+            educationList={educationList}
+            listEducationHandlers={educationHandlers}
+            isActive={activeIndex === 1}
+            onShow={() => setActiveIndex(1)}
+          />
+          <ListWork
+            workList={workList}
+            listWorkHandlers={workHandlers}
+            isActive={activeIndex === 2}
+            onShow={() => setActiveIndex(2)}
+          />
         </div>
-        <br />
-        <div className="Education">
-          {educationList.map((education) => (
-            <Fragment key={education.id}>
-              <h1>{education.institution}</h1>
-              <h3>{education.degree}</h3>
-              <h5>{education.year}</h5>
-            </Fragment>
-          ))}
-        </div>
-        <br />
-        <div className="Work">
-          {workList.map((work) => (
-            <Fragment key={work.id}>
-              <h1>{work.company}</h1>
-              <h3>{work.dates}</h3>
-              <h3>{work.positionTitle}</h3>
-              <p>{work.mainResponsibilities}</p>
-            </Fragment>
-          ))}
-        </div>
+      </main>
+
+      <div className="container cv-container">
+        <section className="cv-view">
+          <header className="cv-header">
+            <h1 className="cv-name">
+              {[generalInfo.firstName, generalInfo.lastName].join(" ")}
+            </h1>
+            <p className="cv-contact">
+              {generalInfo.email} · {generalInfo.phone}
+            </p>
+          </header>
+
+          <section className="cv-section">
+            <h2>Education</h2>
+            <ul>
+              {educationList.map((education) => (
+                <li key={education.id} className="cv-item">
+                  <h3>{education.institution}</h3>
+                  <p className="cv-meta">
+                    {education.degree} — {education.year}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="cv-section">
+            <h2>Work Experience</h2>
+            <ul>
+              {workList.map((work) => (
+                <li key={work.id} className="cv-item">
+                  <h3>
+                    {work.positionTitle} — {work.company}
+                  </h3>
+                  <p className="cv-meta">{work.dates}</p>
+                  <p>{work.mainResponsibilities}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </section>
       </div>
     </>
   );

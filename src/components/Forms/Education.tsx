@@ -1,3 +1,5 @@
+import Input from "../Input";
+
 interface EducationForm {
   institution: string;
   year: string;
@@ -6,9 +8,18 @@ interface EducationForm {
 }
 
 interface EducationHandlers {
-  handleInstitutionChange: (id:string, e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleYearChange: (id:string, e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleDegreeChange: (id:string, e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleInstitutionChange: (
+    id: string,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => void;
+  handleYearChange: (
+    id: string,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => void;
+  handleDegreeChange: (
+    id: string,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => void;
 }
 
 function Education({
@@ -19,34 +30,39 @@ function Education({
   educationHandlers: EducationHandlers;
 }) {
   return (
-    <div className="education">
-      <label>
-        Institution:{" "}
-        <input
+    <>
+      <div>
+        <Input
+          title="Institution"
           type="text"
           value={education.institution}
-          onChange={e => educationHandlers.handleInstitutionChange(education.id, e)}
+          id={education.id}
+          onChange={(e) =>
+            educationHandlers.handleInstitutionChange(education.id, e)
+          }
         />
-      </label>
-      <br />
-      <label>
-        Year:{" "}
-        <input
+      </div>
+      <div>
+        <Input
+          title="Year"
           type="text"
           value={education.year}
-          onChange={e => educationHandlers.handleYearChange(education.id, e)}
+          id={education.id}
+          onChange={(e) => educationHandlers.handleYearChange(education.id, e)}
         />
-      </label>
-      <br />
-      <label>
-        Degree:{" "}
-        <input
+      </div>
+      <div>
+        <Input
+          title="Degree"
           type="text"
           value={education.degree}
-          onChange={e => educationHandlers.handleDegreeChange(education.id, e)}
+          id={education.id}
+          onChange={(e) =>
+            educationHandlers.handleDegreeChange(education.id, e)
+          }
         />
-      </label>
-    </div>
+      </div>
+    </>
   );
 }
 

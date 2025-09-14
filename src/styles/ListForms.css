@@ -1,0 +1,42 @@
+@import "../index.css";
+
+.card .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 1rem;
+}
+
+.card .education,
+.card .work {
+    background-color: var(--Pill-background);
+    border: 1px solid var(--Primary-accent);
+    border-radius: 8px;
+    padding: 0.4rem;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.4rem;
+}
+
+.card .education:not(:last-of-type),
+.card .work:not(:last-of-type)  {
+    margin-bottom: 1.2rem;
+}
+
+.card .education > div,
+.card .work > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.education button,
+.work button  {
+    align-self: flex-end;
+}
+
+.work textarea {
+    resize: none;    
+}

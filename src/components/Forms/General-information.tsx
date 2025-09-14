@@ -1,3 +1,6 @@
+import ArrowDown from "../../assets/keyboard_arrow_down_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg?react";
+import TextInput from "../Input";
+
 interface GeneralInformationForm {
   firstName: string;
   lastName: string;
@@ -25,51 +28,49 @@ function GeneralInformation({
 }) {
   if (!isActive) {
     return (
-      <div className="container" onClick={onShow}>
+      <section className="general-information close-card" onClick={onShow}>
         <p>
           <strong>General Information</strong>
         </p>
-      </div>
+        <ArrowDown />
+      </section>
     );
   }
   return (
-    <div className="container">
-      <label>
-        First Name:{" "}
-        <input
-          type="text"
-          value={generalInfo.firstName}
-          onChange={generalInfoHandlers.handleFirstNameChange}
-        />
-      </label>
+    <section className="general-information card">
+      <h2>General Information</h2>
+      <TextInput
+        title="First Name"
+        type="text"
+        value={generalInfo.firstName}
+        id="First Name"
+        onChange={generalInfoHandlers.handleFirstNameChange}
+      />
       <br />
-      <label>
-        Last Name:{" "}
-        <input
-          type="text"
-          value={generalInfo.lastName}
-          onChange={generalInfoHandlers.handleLastNameChange}
-        />
-      </label>
+      <TextInput
+        title="Last Name"
+        type="text"
+        value={generalInfo.lastName}
+        id="Last Name"
+        onChange={generalInfoHandlers.handleLastNameChange}
+      />
       <br />
-      <label>
-        Phone:{" "}
-        <input
-          type="text"
-          value={generalInfo.phone}
-          onChange={generalInfoHandlers.handlePhoneChange}
-        />
-      </label>
+      <TextInput
+        title="Phone"
+        type="text"
+        value={generalInfo.phone}
+        id="Phone"
+        onChange={generalInfoHandlers.handlePhoneChange}
+      />
       <br />
-      <label>
-        Email:{" "}
-        <input
-          type="email"
-          value={generalInfo.email}
-          onChange={generalInfoHandlers.handleEmailChange}
-        />
-      </label>
-    </div>
+      <TextInput
+        title="Email"
+        type="email"
+        value={generalInfo.email}
+        id="Email"
+        onChange={generalInfoHandlers.handleEmailChange}
+      />
+    </section>
   );
 }
 

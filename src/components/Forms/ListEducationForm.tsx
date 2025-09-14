@@ -2,7 +2,7 @@ import Education from "./Education";
 import type { EducationForm, EducationHandlers } from "./Education";
 import DeleteIcon from "../../assets/delete_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg?react";
 import AddIcon from "../../assets/add_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg?react";
-import { Fragment } from "react/jsx-runtime";
+import ArrowDown from "../../assets/keyboard_arrow_down_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg?react";
 
 interface ListEducationHandlers extends EducationHandlers {
   addEducation: () => void;
@@ -24,21 +24,24 @@ function ListEducationForm({
 }: ListEducation) {
   if (!isActive) {
     return (
-      <div className="container" onClick={onShow}>
+      <section className="education-list close-card" onClick={onShow}>
         <p>
           <strong>Education</strong>
         </p>
-      </div>
+        <ArrowDown />
+      </section>
     );
   }
   return (
-    <div className="container">
-      <h2>Education</h2>
-      <button onClick={listEducationHandlers.addEducation}>
-        <AddIcon />
-      </button>
+    <section className="education-list card">
+      <div className="header">
+        <h2>Education</h2>
+        <button onClick={listEducationHandlers.addEducation}>
+          <AddIcon />
+        </button>
+      </div>
       {educationList.map((education) => (
-        <Fragment key={education.id}>
+        <div key={education.id} className="education">
           <Education
             education={education}
             educationHandlers={listEducationHandlers}
@@ -48,9 +51,9 @@ function ListEducationForm({
           >
             <DeleteIcon />
           </button>
-        </Fragment>
+        </div>
       ))}
-    </div>
+    </section>
   );
 }
 

@@ -1,3 +1,5 @@
+import Input from "../Input";
+
 interface WorkForm {
   company: string;
   dates: string;
@@ -33,42 +35,48 @@ function Work({
   workHandlers: WorkHandlers;
 }) {
   return (
-    <div className="education">
-      <label>
-        Company:{" "}
-        <input
+    <>
+      <div>
+        <Input
+          title="Company"
           type="text"
           value={work.company}
+          id={work.id}
           onChange={(e) => workHandlers.handleCompanyChange(work.id, e)}
         />
-      </label>
-      <br />
-      <label>
-        Dates:{" "}
-        <input
+      </div>
+      <div>
+        <Input
+          title="Dates:"
           type="text"
           value={work.dates}
+          id={work.id}
           onChange={(e) => workHandlers.handleDatesChange(work.id, e)}
         />
-      </label>
-      <br />
-      <label>
-        Position Title:{" "}
-        <input
+      </div>
+      <div>
+        <Input
+          title="Position Title"
           type="text"
           value={work.positionTitle}
+          id={work.id}
           onChange={(e) => workHandlers.handlePositionTitleChange(work.id, e)}
         />
-      </label>
-      <br />
-      <label>
-        Main Responsibilities:{" "}
+      </div>
+      <div>
+        <label htmlFor={`Main Responsibilities-${work.id}`}>
+          Main Responsibilities:{" "}
+        </label>
         <textarea
           value={work.mainResponsibilities}
-          onChange={(e) => workHandlers.handleMainResponsibilitiesChange(work.id, e)}
+          onChange={(e) =>
+            workHandlers.handleMainResponsibilitiesChange(work.id, e)
+          }
+          id={`Main Responsibilities-${work.id}`}
+          rows={8}
         />
-      </label>
-    </div>
+      </div>
+    </>
   );
 }
 
