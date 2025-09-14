@@ -24,6 +24,44 @@ input:focus {
   gap: 1rem;
 }
 
+main header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.5rem 0.3rem;
+  gap: 1rem;
+}
+
+main header .logo {
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--Logo-gradient-start), var(--Logo-gradient-end));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  box-shadow: 0 6px 18px rgba(3, 7, 18, 0.08);
+}
+
+main header h1 {
+  font-size: 1.3rem;
+}
+
+main header p {
+  font-size: 0.7rem;
+  color: var(--Muted-text);
+}
+
+main header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+}
+
 .card {
   background-color: var(--Card-background);
   border-radius: 12px;
@@ -113,6 +151,10 @@ input:focus {
   border-bottom: 1px solid var(--Secondary-grays);
   padding-bottom: 0.3rem;
   color: var(--Primary-accent);
+}
+
+.cv-section .workDescription {
+  font-size: 0.6rem;
 }
 
 .cv-item {

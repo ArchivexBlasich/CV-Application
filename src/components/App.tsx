@@ -7,6 +7,7 @@ import CvVision from "./CvVision";
 import "../styles/App.css";
 import "../styles/GeneralInformation.css";
 import "../styles/ListForms.css";
+import PdfIcon from "../assets/picture_as_pdf_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.svg?react";
 
 const initialGeneralInfo: GeneralInformationForm = {
   firstName: "Fabricio",
@@ -169,6 +170,14 @@ function App() {
   return (
     <>
       <main className="container">
+        <header>
+          <div className="logo">CV</div>
+          <div>
+            <h1>CV Builder</h1>
+            <p className="lead">Create a professional CV.</p>
+          </div>
+          <PdfIcon />
+        </header>
         <div className="cv-edition">
           <GeneralInformation
             generalInfo={generalInfo}
