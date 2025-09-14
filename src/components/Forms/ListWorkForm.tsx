@@ -2,7 +2,7 @@ import Work from "./Work";
 import type { WorkForm, WorkHandlers } from "./Work";
 import DeleteIcon from "../../assets/delete_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg?react";
 import AddIcon from "../../assets/add_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg?react";
-import ArrowDown from "../../assets/keyboard_arrow_down_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg?react";
+import ArrowDownIcon from "../../assets/keyboard_arrow_down_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg?react";
 
 interface ListWorkHandlers extends WorkHandlers {
   addWork: () => void;
@@ -28,7 +28,7 @@ function ListWorkForm({
         <p>
           <strong>Work Experience</strong>
         </p>
-        <ArrowDown />
+        <ArrowDownIcon />
       </section>
     );
   }
