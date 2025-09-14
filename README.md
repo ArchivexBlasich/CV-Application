@@ -1,69 +1,19 @@
-# React + TypeScript + Vite
+[Live view](https://archivexblasich.github.io/CV-Application/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# CV Builder
 
-Currently, two official plugins are available:
+A small React app where you can fill out your personal information, education, and work experience, and see your CV update in real time.  
+It also lets you export your CV as a PDF.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## What I practiced
 
-## Expanding the ESLint configuration
+This project was part of The Odin Project’s React curriculum.  
+I practiced:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Component structure**: splitting the app into smaller parts (`GeneralInformation`, `Education`, `Work`, and `CvVision`).
+- **State management**: lifting state up to `App.jsx` so the CV preview updates instantly when typing in the forms.
+- **Props**: passing data and handler functions between parent and child components.
+- **Controlled inputs**: making form fields controlled by React state.
+- **Dynamic lists**: adding and removing multiple education and work entries.
+- **Conditional rendering**: toggling between collapsed “cards” and expanded forms.
+- **Exporting content**: generating a PDF with `html2pdf.js`.
