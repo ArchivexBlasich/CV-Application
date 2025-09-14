@@ -2,6 +2,8 @@ import { useState } from "react";
 import { GeneralInformation, ListEducation, ListWork } from "./Forms";
 import type { GeneralInformationForm, EducationForm, WorkForm } from "./Forms";
 import type { ListEducationHandlers, ListWorkHandlers } from "./Forms";
+import CvVision from "./CvVision";
+// import html2pdf from "html2pdf.js";
 import "../styles/App.css";
 import "../styles/GeneralInformation.css";
 import "../styles/ListForms.css";
@@ -189,47 +191,11 @@ function App() {
         </div>
       </main>
 
-      <div className="container cv-container">
-        <section className="cv-view">
-          <header className="cv-header">
-            <h1 className="cv-name">
-              {[generalInfo.firstName, generalInfo.lastName].join(" ")}
-            </h1>
-            <p className="cv-contact">
-              {generalInfo.email} · {generalInfo.phone}
-            </p>
-          </header>
-
-          <section className="cv-section">
-            <h2>Education</h2>
-            <ul>
-              {educationList.map((education) => (
-                <li key={education.id} className="cv-item">
-                  <h3>{education.institution}</h3>
-                  <p className="cv-meta">
-                    {education.degree} — {education.year}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section className="cv-section">
-            <h2>Work Experience</h2>
-            <ul>
-              {workList.map((work) => (
-                <li key={work.id} className="cv-item">
-                  <h3>
-                    {work.positionTitle} — {work.company}
-                  </h3>
-                  <p className="cv-meta">{work.dates}</p>
-                  <p>{work.mainResponsibilities}</p>
-                </li>
-              ))}
-            </ul>
-          </section>
-        </section>
-      </div>
+      <CvVision
+        generalInfo={generalInfo}
+        educationList={educationList}
+        workList={workList}
+      />
     </>
   );
 }
